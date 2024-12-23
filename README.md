@@ -85,4 +85,4 @@ This project is licensed under the [GNU GPL 3.0 License](LICENSE).
 
 ---
 
-## ✨ Made with ❤️ by the discordium.js Team
+### ✨ Made with ❤️ by the discordium.js Team
