@@ -1,0 +1,51 @@
+{
+  "name": "@discordiumjs/emitter",
+  "description": "✨ A modern and powerful EventEmitter",
+  "version": "1.0.0",
+  "module": "src/index.js",
+  "type": "module",
+  "types": "global.d.ts",
+  "homepage": "https://github.com/discordiumjs/emitter",
+  "bugs": {
+    "url": "https://github.com/discordiumjs/emitter/issues"
+  },
+  "author": "Eren (erffy)",
+  "contributors": [
+    {
+      "name": "Davut Özgür Süküti",
+      "url": "https://github.com/davutozgursukuti"
+    }
+  ],
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint . --ext .ts,.js",
+    "prepare": "husky",
+    "postinstall": "npm run prepare",
+    "doc": "typedoc --out docs lib",
+    "precommit": "lint-staged",
+    "check-format": "prettier --check .",
+    "build": "tsc && tsc-alias"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "bun-types": "latest",
+    "eslint": "^9.17",
+    "eslint-config-prettier": "^9.1",
+    "eslint-plugin-import": "^2.31",
+    "eslint-plugin-node": "^11.1",
+    "eslint-plugin-promise": "^7.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2",
+    "prettier": "^3.4",
+    "typedoc": "^0.27"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "lint-staged": {
+    "*.{ts,js,json,md}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  }
+}
