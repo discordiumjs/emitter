@@ -1,0 +1,12 @@
+{
+  "name": "@discordiumjs/emitter",
+  "description": "A powerful EventEmitter written in Typescript for discordium.js",
+  "module": "src/index.js",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
