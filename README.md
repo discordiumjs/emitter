@@ -1,3 +1,5 @@
+> **⚠️ Warning:** The @discordiumjs/emitter package will be released alongside discordium.js and is not currently available on npm. For now, it cannot be downloaded from npm.
+
 # @discordiumjs/emitter
 
 ✨ A modern, powerful, and lightweight EventEmitter designed for seamless integration with TypeScript projects, built to complement **discordium.js**.
@@ -23,6 +25,9 @@ yarn add @discordiumjs/emitter
 
 # pnpm
 pnpm add @discordiumjs/emitter
+
+# bun
+bun add @discordiumjs/emitter
 ```
 
 ---

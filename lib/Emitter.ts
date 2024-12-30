@@ -160,36 +160,35 @@ export default class Emitter<L extends ListenerSignature<L> = ListenerMap> {
    * @param args - The arguments to pass to the listener callbacks.
    * @returns A set of return values from the listener callbacks.
    */
-  public emit<K extends keyof L>(
-    eventName: K,
-    ...args: Parameters<L[K]>
-  ): Set<L[keyof L]> {
-    let returnVal: Set<L[keyof L]> = new Set();
-    if (this.listeners.has(eventName)) {
-      for (const callback of this.listeners.get(eventName) as Set<L[keyof L]>) {
-        if (callback.listenerData?.suspended) continue;
 
-        const callbackRes: any = callback(...args);
+   public emit<K extends keyof L>(eventName: K, ...args: Parameters<L[K]>): Set<ReturnType<L[keyof L]>>{
+        let returnVal: Set<ReturnType<L[keyof L]>> = new Set();
+        if(this.listeners.has(eventName)){
+        for(const callback of this.listeners.get(eventName) as Set<L[keyof L]>){
+            if(callback.listenerData?.suspended) continue;
 
-        if (isPromiseLike(callbackRes)) {
-          callbackRes.then(() => {
-            Object.defineProperty(callback.listenerData, 'listened', {
-              value: true,
-            });
-            if (callback.listenerData?.once) this.off(eventName, callback);
-            returnVal.add(callbackRes);
-          });
-        } else {
-          Object.defineProperty(callback.listenerData, 'listened', {
-            value: true,
-          });
-          if (callback.listenerData?.once) this.off(eventName, callback);
-          returnVal.add(callbackRes);
+            const callbackRes: ReturnType<L[keyof L]> = callback(...args);
+
+            if(isPromiseLike(callbackRes)){
+                callbackRes.then(() => {
+                    Object.defineProperty(callback.listenerData, "listened", {
+                        value: true
+                    })
+                    if(callback.listenerData?.once) this.off(eventName, callback);
+                    returnVal.add(callbackRes);
+                })
+            } else {
+                Object.defineProperty(callback.listenerData, "listened", {
+                    value: true
+                })
+                if(callback.listenerData?.once) this.off(eventName, callback);
+                returnVal.add(callbackRes);
+            }
         }
-      }
+       }
+       return returnVal;
     }
-    return returnVal;
-  }
+
 
   /**
    * Checks if the specified listener exists for a given event.
